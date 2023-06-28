@@ -17,6 +17,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
