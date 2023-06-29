@@ -17,7 +17,7 @@ public class LoginDAO implements Serializable {
     }
 
     public Token loginReturningToken(String username, String password) {
-        String loginJson = "{\"token\":" + addQuotes(username) + ",\"password\":"+addQuotes(password) + "}";
+        String loginJson = "{\"username\":" + addQuotes(username) + ",\"password\":"+addQuotes(password) + "}";
         ResponseEntity<Token> tokenExchange = restTemplate
                 .exchange(BASE_URL, HttpMethod.POST, new HttpEntity<>(loginJson, createJsonHeader()), Token.class);
         return tokenExchange.getBody();

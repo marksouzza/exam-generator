@@ -26,7 +26,7 @@ public class LoginBean implements Serializable {
     }
 
     public String login() {
-        Token token = loginDAO.loginReturningToken("mark", "password");
+        Token token = loginDAO.loginReturningToken("marksouzza", "marksouzza");
         return token == null ? null : addTokenExpirationTimeCookiesAndReturnIndex(token);
     }
 

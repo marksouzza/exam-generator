@@ -17,7 +17,7 @@ public class IndexBean implements Serializable {
         this.loginDAO = loginDAO;
     }
 
-    public void login(){
+    public void login() {
         Token token = loginDAO.loginReturningToken("mark", "password");
         System.out.println(token);
     }

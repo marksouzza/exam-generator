@@ -17,10 +17,10 @@ public class LoginFilter implements Filter, Serializable {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
+         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        if (!request.getRequestURI().endsWith("login.xhtml") && isTokenValid(request)) {
+        if (!request.getRequestURI().endsWith("login.xhtml") && !isTokenValid(request)) {
             response.sendRedirect(request.getContextPath() + "/login.xhtml");
             return;
         }
