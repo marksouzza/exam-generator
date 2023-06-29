@@ -30,11 +30,17 @@ public class LoginBean implements Serializable {
         return token == null ? null : addTokenExpirationTimeCookiesAndReturnIndex(token);
     }
 
+    public String logout() {
+        externalContext.addResponseCookie("token", null, null);
+        externalContext.addResponseCookie("expirationTime", null, null);
+        return "login.xhtml?faces-redirect=true";
+    }
+
     private String addTokenExpirationTimeCookiesAndReturnIndex(Token token) {
         try {
             externalContext.addResponseCookie("token", URLEncoder.encode(token.getToken(), "UTF-8"), null);
             externalContext.addResponseCookie("expirationTime", token.getExpirationTime().toString(), null);
-            return "index.xhtml/faces-redirect=true";
+            return "index.xhtml?faces-redirect=true";
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }

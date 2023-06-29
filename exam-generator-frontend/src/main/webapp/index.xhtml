@@ -6,7 +6,9 @@
 
 
     <ui:define name="content">
-        <h:outputLabel value="hi"/>
+        <h:form>
+            <h:commandButton value="logout" action="#{loginBean.logout}"/>
+        </h:form>
     </ui:define>
 </ui:composition>
 
