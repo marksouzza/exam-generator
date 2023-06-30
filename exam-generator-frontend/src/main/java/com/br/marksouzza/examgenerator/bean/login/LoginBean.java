@@ -2,15 +2,13 @@ package com.br.marksouzza.examgenerator.bean.login;
 
 import com.br.marksouzza.examgenerator.custom.CustomURLEncoder;
 import com.br.marksouzza.examgenerator.persistence.dao.LoginDAO;
-import com.br.marksouzza.examgenerator.persistence.model.Token;
+import com.br.marksouzza.examgenerator.persistence.model.support.Token;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 @Named
 @ViewScoped
@@ -27,7 +25,7 @@ public class LoginBean implements Serializable {
     }
 
     public String login() {
-        Token token = loginDAO.loginReturningToken("marksouzza", "marksouzza");
+        Token token = loginDAO.loginReturningToken(username, password);
         if (token == null) return null;
         addTokenAndExpirationTimeToCookies(token.getToken(), token.getExpirationTime().toString());
         return "index.xhtml?faces-redirect=true";

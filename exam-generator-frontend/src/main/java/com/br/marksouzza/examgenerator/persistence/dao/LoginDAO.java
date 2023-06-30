@@ -1,26 +1,27 @@
 package com.br.marksouzza.examgenerator.persistence.dao;
 
-import com.br.marksouzza.examgenerator.persistence.model.Token;
+import com.br.marksouzza.examgenerator.annotation.ExceptionHandler;
+import com.br.marksouzza.examgenerator.custom.CustomRestTemplate;
+import com.br.marksouzza.examgenerator.persistence.model.support.Token;
 import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 import java.io.Serializable;
 
 public class LoginDAO implements Serializable {
     private final String BASE_URL = "http://localhost:8081/login";
-    private final RestTemplate restTemplate;
+    private final CustomRestTemplate restTemplate;
 
     @Inject
-    public LoginDAO(RestTemplate restTemplate) {
+    public LoginDAO(CustomRestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
+    @ExceptionHandler
     public Token loginReturningToken(String username, String password) {
         String loginJson = "{\"username\":" + addQuotes(username) + ",\"password\":"+addQuotes(password) + "}";
-        ResponseEntity<Token> tokenExchange = restTemplate
-                .exchange(BASE_URL, HttpMethod.POST, new HttpEntity<>(loginJson, createJsonHeader()), Token.class);
-        return tokenExchange.getBody();
+            ResponseEntity<Token> tokenExchange = restTemplate.exchange(BASE_URL, HttpMethod.POST, new HttpEntity<>(loginJson, createJsonHeader()), Token.class);
+            return tokenExchange.getBody();
     }
 
     private String addQuotes(String value) {

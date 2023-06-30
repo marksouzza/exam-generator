@@ -1,4 +1,4 @@
-package com.br.marksouzza.examgenerator.persistence.model;
+package com.br.marksouzza.examgenerator.persistence.model.support;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
