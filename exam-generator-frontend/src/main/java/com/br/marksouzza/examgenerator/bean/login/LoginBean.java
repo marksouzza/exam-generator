@@ -1,6 +1,6 @@
 package com.br.marksouzza.examgenerator.bean.login;
 
-import com.br.marksouzza.examgenerator.custom.CustomURLEncoder;
+import com.br.marksouzza.examgenerator.custom.CustomURLEncoderDecoder;
 import com.br.marksouzza.examgenerator.persistence.dao.LoginDAO;
 import com.br.marksouzza.examgenerator.persistence.model.support.Token;
 
@@ -37,7 +37,7 @@ public class LoginBean implements Serializable {
     }
 
     private void addTokenAndExpirationTimeToCookies(String token, String expirationTime){
-        externalContext.addResponseCookie("token", CustomURLEncoder.encodeUTF8(token),null);
+        externalContext.addResponseCookie("token", CustomURLEncoderDecoder.encodeUTF8(token),null);
         externalContext.addResponseCookie("expirationTime", expirationTime, null);
     }
 

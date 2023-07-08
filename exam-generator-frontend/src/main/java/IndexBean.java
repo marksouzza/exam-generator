@@ -1,3 +1,4 @@
+import com.br.marksouzza.examgenerator.persistence.dao.ExaminerDAO;
 import com.br.marksouzza.examgenerator.persistence.dao.LoginDAO;
 import com.br.marksouzza.examgenerator.persistence.model.support.Token;
 
@@ -11,15 +12,21 @@ import java.io.Serializable;
 public class IndexBean implements Serializable {
     private String message = "Working =)";
     private final LoginDAO loginDAO;
+    private final ExaminerDAO examinerDAO;
 
     @Inject
-    public IndexBean(LoginDAO loginDAO) {
+    public IndexBean(LoginDAO loginDAO, ExaminerDAO examinerDAO) {
         this.loginDAO = loginDAO;
+        this.examinerDAO = examinerDAO;
     }
 
     public void login() {
         Token token = loginDAO.loginReturningToken("mark", "password");
         System.out.println(token);
+    }
+
+    public void checkExaminer() {
+        examinerDAO.getExaminerById(1L);
     }
 
     public String getMessage() {
